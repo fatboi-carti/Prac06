@@ -25,3 +25,11 @@ foreach (ManagementObject os in osSearcher.Get())
     System.Console.WriteLine($"ОС: {os["Caption"]}");
     System.Console.WriteLine($"Версия: {os["Version"]}");
 }
+
+var usbSearcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE DeviceID LIKE 'USB%'");
+
+System.Console.WriteLine("Устройства Plug and Play с идентификатором USB:");
+foreach (ManagementObject device in usbSearcher.Get())
+{
+    System.Console.WriteLine($"  - {device["Name"]}");
+}
